@@ -4,7 +4,16 @@ import header_image from '@/../public/images/logo-site.png'
 
 const Header : FC = () => {
     return(
-        <>
+        <div className='grid grid-cols-3 gap-4'>
+
+        </>
+    )
+}
+
+export default Header;
+
+
+{/* <>
             <ul className='flex justify-between p-3 text-xs items-center'>
                 <li>SHOP</li>
                 <li>INSPIRATION</li>
@@ -14,8 +23,4 @@ const Header : FC = () => {
                 <li>ACCOUNT</li>
                 <li>CART</li>
             </ul>
-        </>
-    )
-}
-
-export default Header;
+        </> */}
