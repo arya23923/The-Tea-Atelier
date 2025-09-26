@@ -5,9 +5,9 @@ import menu from '@/../public/images/menu.png'
 
 const Header : FC = () => {
     return(
-        <div className='flex justify-center p-5'>
-            <Image src={menu} alt='menu' className='justify-self-start w-10 h-10 '/>
-            <Image className='p-1 w-25 h-auto justify-self-center md:w-40' src={header_image} alt='header_image' />
+        <div className='flex'>
+            <Image src={menu} alt='menu col-span-1' className=''/>
+            <Image className='' src={header_image} alt='header_image' />
         </div>
     )
 }
