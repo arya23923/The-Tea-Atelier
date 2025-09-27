@@ -35,17 +35,31 @@ const Header : FC = () => {
                 </div>
                 <Image className={`w-30 ml-5 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
             </div>
-            <div className="hidden md:flex justify-around items-center p-5 text-white bg-opacity-80 hover:text-black hover:bg-white" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
-                <a href="#">SHOP</a>
-                <a href="#">INSPIRATION</a>
-                <a href="#">CONTACT</a>
-                <a href="#"><Image src={logo} width={180} height={150} alt='header_image'/></a>
-                <a href="#" className='flex'>
+            <div className="hidden md:flex justify-around items-center p-5 text-white bg-opacity-80 hover:text-black hover:bg-white fixed w-screen" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full">SHOP</a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full">INSPIRATION</a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full">CONTACT</a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full"><Image src={logo} width={170} height={150} alt='header_image'/></a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full flex">
                     <p className=''>SEARCH</p>
                     <Image src={search} width={10} height={10} className='w-7 p-1.5 pt-1' alt='search'/>
                 </a>
-                <a href="#">ACCOUNT</a>
-                <a href="#">CART</a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full">ACCOUNT</a>
+                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:w-0 after:h-[2px] after:bg-black
+                    after:transition-all after:duration-300 hover:after:w-full">CART</a>
             </div>
         </header>
     )
