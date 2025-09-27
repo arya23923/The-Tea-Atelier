@@ -17,8 +17,8 @@ const montserrat = Montserrat({
 
 const Header : FC = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const [logo, setLogo] = useState(inverted);
-    const [search, setSearch] = useState(invert_search);
+    const [logo, setLogo] = useState("/images/inverted-logo.png");
+    const [search, setSearch] = useState("/images/invert-search.png");
 
     return(
         <header>
@@ -35,14 +35,14 @@ const Header : FC = () => {
                 </div>
                 <Image className={`w-30 ml-5 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
             </div>
-            <div className="hidden md:flex justify-around items-center p-5 text-white bg-transparent hover:text-black hover:bg-white" onMouseOver={() => {setLogo(header_image); setSearch(search_icon)}} onMouseOut={() => {setLogo(inverted); setSearch(invert_search)}}>
+            <div className="hidden md:flex justify-around items-center p-5 text-white bg-opacity-80 hover:text-black hover:bg-white" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
                 <a href="#">SHOP</a>
                 <a href="#">INSPIRATION</a>
                 <a href="#">CONTACT</a>
-                <a href="#"><Image className='' src={logo} alt='header_image'/></a>
+                <a href="#"><Image src={logo} width={180} height={150} alt='header_image'/></a>
                 <a href="#" className='flex'>
                     <p className=''>SEARCH</p>
-                    <Image src={search} className='w-7 p-1.5 pt-1' alt='search'/>
+                    <Image src={search} width={10} height={10} className='w-7 p-1.5 pt-1' alt='search'/>
                 </a>
                 <a href="#">ACCOUNT</a>
                 <a href="#">CART</a>
