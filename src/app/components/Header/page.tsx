@@ -35,7 +35,7 @@ const Header : FC = () => {
                 </div>
                 <Image className={`w-30 ml-5 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
             </div>
-            <div className="hidden md:flex justify-around items-center p-5 text-white bg-opacity-80 hover:text-black hover:bg-white fixed w-screen" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
+            <div className="hidden md:flex justify-around items-center p-3 text-white bg-opacity-80 hover:text-black hover:bg-white fixed w-screen" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
                 <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full">SHOP</a>
