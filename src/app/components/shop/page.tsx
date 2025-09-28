@@ -53,7 +53,7 @@ const Shop : FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:mt-20">
                 {teas.map((tea) => (
                     <a href="#" key={tea.id} className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className}`}>
-                        <Image className="" height={300} width={300} src={tea.image} alt={tea.name} />
+                        <Image className="" height={400} width={400} src={tea.image} alt={tea.name} />
                         <p className="text-xl p-4">{tea.name}</p>
                         <p className="text-lg pb-10">For ₹ {tea.price}</p>
                     </a>
