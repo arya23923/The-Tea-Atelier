@@ -1,7 +1,6 @@
 "use client"
 
-import React from "react"
-import {FC, useState} from "react"
+import {FC} from "react"
 
 const Shop : FC = () => {
     return(
