@@ -59,7 +59,7 @@ const tea = [
     id: 10,
     name: "Match Tea",
     price: 150,
-    image: "/images/match-tea.jpg",
+    image: "/images/matcha-tea.jpg",
   },
 ];
 
