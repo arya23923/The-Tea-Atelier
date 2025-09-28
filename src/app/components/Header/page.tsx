@@ -21,7 +21,7 @@ const Header : FC = () => {
     const [search, setSearch] = useState("/images/invert-search.png");
 
     return(
-        <header>
+        <header className='z-40'>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className}`}>
                 <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
                     <Image className='w-13 h-auto pl-3 pt-5' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
@@ -35,7 +35,7 @@ const Header : FC = () => {
                 </div>
                 <Image className={`w-30 ml-5 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
             </div>
-            <div className="hidden md:flex justify-around items-center p-3 text-white bg-opacity-80 hover:text-black hover:bg-white fixed w-screen" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
+            <div className="hidden md:flex justify-around items-center p-3 text-white backdrop-blur-xl hover:text-black hover:bg-white fixed w-screen z-40" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
                 <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full">SHOP</a>
