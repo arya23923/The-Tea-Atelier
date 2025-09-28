@@ -4,9 +4,8 @@ import {FC, useState} from 'react'
 import Image from 'next/image';
 import header_image from '@/../public/images/logo-site.png'
 import menu from '@/../public/images/menu.png'
+import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
-import inverted from '@/../public/images/inverted-logo.png'
-import invert_search from '@/../public/images/invert-search.png'
 
 import { Montserrat } from 'next/font/google'
  
@@ -34,6 +33,8 @@ const Header : FC = () => {
                     </div>)}
                 </div>
                 <Image className={`w-30 ml-5 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
+                <a href="#" className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 pl-3' /></a>
+                <a href="#" className='inline'><Image src={search_icon} className='w-12 h-10 self-center p-2 pr-3 pl-3' alt='search'/></a>
             </div>
             <div className="hidden md:flex justify-around items-center p-3 text-white backdrop-blur-xl hover:text-black hover:bg-white fixed w-screen z-40" onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png")}}>
                 <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
