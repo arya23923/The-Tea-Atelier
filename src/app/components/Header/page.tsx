@@ -8,6 +8,7 @@ import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 
 import { Montserrat } from 'next/font/google'
+import Link from 'next/link';
  
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,7 +32,7 @@ const Header : FC = () => {
                         <a>ACCOUNT</a>
                     </div>)}
                 </div>
-                <Image className={`w-30 ml-3 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' />
+                <Link href='/components/Homepage'><Image className={`w-30 ml-3 ${open ? 'w-30 h-30' : 'w-30'}`} src={header_image} alt='header_image' /></Link>
                 <a href="#" className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
                 <a href="#" className='inline'><Image src={search_icon} className='w-12 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
             </div>
@@ -45,9 +46,9 @@ const Header : FC = () => {
                 <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full">CONTACT</a>
-                <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <Link href="/components/Homepage" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full"><Image src={logo} width={170} height={150} alt='header_image'/></a>
+                    after:transition-all after:duration-300 hover:after:w-full"><Image src={logo} width={170} height={150} alt='header_image'/></Link>
                 <a href="#" className="relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full flex">
