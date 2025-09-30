@@ -4,6 +4,7 @@ import {FC, useState, useEffect} from "react"
 import Image from "next/image"
 import shop from "@/../public/images/shop-page.jpg"
 import filter from '@/../public/images/filter.png'
+import Filter from "./filter"
 
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
@@ -29,6 +30,8 @@ interface Tea {
 const Shop : FC = () => {
     const [teas, setTea] = useState<Tea[]>([]);
     const [load, setLoad] = useState<boolean>(true);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [filters, setFilters] = useState<{ minPrice: number; maxPrice: number } | null>(null);
 
     useEffect(() => {
         const fetchTea = async () => {
@@ -47,11 +50,16 @@ const Shop : FC = () => {
 
     if (load) return <p>Loading teas...</p>;
 
+    const handleApplyFilters = (newFilters: { minPrice: number; maxPrice: number }) => {
+        setFilters(newFilters);
+        setIsFilterOpen(false);
+    };
+
     return(
         <div>
             <Image src={shop} alt="shop-page image" className="w-screen z-0" />
             <p className={`z-20 -mt-17 p-5 text-2xl md:text-6xl md:-mt-40 md:ml-10 ${cormorant.className}`}>Browse our blends</p>
-            <div className="flex p-5 ml-5 md:ml-10 md:mt-20 hover:cursor-pointer">
+            <div className="flex p-5 ml-5 md:ml-10 md:mt-20 hover:cursor-pointer" onClick={() => setIsFilterOpen(true)}>
                 <Image src={filter} className="w-10 h-10 p-2 md:w-11" alt="filter" />
                 <p className={`text-lg p-2 ${montserrat.className} md:text-lg`}>Filter</p>
             </div>
@@ -64,7 +72,9 @@ const Shop : FC = () => {
                     </a>
                 ))}
             </div>
-                
+            <Filter isOpen={isFilterOpen}
+                onClose={() => setIsFilterOpen(false)}
+                onApply={handleApplyFilters} />
         </div>
     )
 }
