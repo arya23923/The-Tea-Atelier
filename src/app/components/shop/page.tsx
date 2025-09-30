@@ -51,9 +51,9 @@ const Shop : FC = () => {
         <div>
             <Image src={shop} alt="shop-page image" className="w-screen z-0" />
             <p className={`z-20 -mt-17 p-5 text-2xl md:text-6xl md:-mt-40 md:ml-10 ${cormorant.className}`}>Browse our blends</p>
-            <div className="flex p-5 md:ml-10 md:mt-20 hover:cursor-pointer">
-                <Image src={filter} className="w-11 h-auto p-2" alt="filter" />
-                <p className={`text-xl p-2 ${montserrat.className} md:text-lg`}>Filter</p>
+            <div className="flex p-5 ml-5 md:ml-10 md:mt-20 hover:cursor-pointer">
+                <Image src={filter} className="w-10 h-10 p-2 md:w-11" alt="filter" />
+                <p className={`text-lg p-2 ${montserrat.className} md:text-lg`}>Filter</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:-mt-15">
                 {teas.map((tea) => (
