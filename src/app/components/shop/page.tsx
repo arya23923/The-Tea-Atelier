@@ -3,6 +3,8 @@
 import {FC, useState, useEffect} from "react"
 import Image from "next/image"
 import shop from "@/../public/images/shop-page.jpg"
+import filter from '@/../public/images/filter.png'
+import Filter from "./filter"
 
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
@@ -28,6 +30,9 @@ interface Tea {
 const Shop : FC = () => {
     const [teas, setTea] = useState<Tea[]>([]);
     const [load, setLoad] = useState<boolean>(true);
+    const [sortedTea, setSortedTea] = useState<Tea[]>([]);
+    const [filterprop, setFilterprop] = useState<boolean>(false);
+    const [value, setValue] = useState<string>("A-Z")
 
     useEffect(() => {
         const fetchTea = async () => {
@@ -35,6 +40,7 @@ const Shop : FC = () => {
                 const res = await fetch("/api/tea");
                 const data : Tea[] = await res.json();
                 setTea(data);
+                setSortedTea(data);
             } catch(error) {
                 console.error("could not fetch tea : ",error);
             } finally {
@@ -46,12 +52,41 @@ const Shop : FC = () => {
 
     if (load) return <p>Loading teas...</p>;
 
+    const filterTea = (min : number, max : number) => {
+        setSortedTea(teas.filter((tea) => tea.price >= min && tea.price <= max));
+    }
+
+    const sortTea = (value : string) => {
+        let sorted = [...teas]
+        if(value == "A-Z") sorted = (teas.sort((a,b) => a.name > b.name ? 1 : -1))
+        else if(value == "Z-A") sorted = (teas.sort((a,b) => a.name > b.name ? -1 : 1))
+        else if(value == "low") sorted = (teas.sort((a,b) => a.price - b.price))
+        else if(value == "high") sorted = (teas.sort((a,b) => b.price - a.price))
+        setSortedTea(sorted)
+    }
+
     return(
         <div>
             <Image src={shop} alt="shop-page image" className="w-screen z-0" />
             <p className={`z-20 -mt-17 p-5 text-2xl md:text-6xl md:-mt-40 md:ml-10 ${cormorant.className}`}>Browse our blends</p>
-            <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:mt-20">
-                {teas.map((tea) => (
+            <div className={`flex justify-between md:w-screen ${montserrat.className}`}>
+                <div className={`flex p-5 ml-5 md:ml-10 md:mt-20 hover:cursor-pointer `}  onClick={() => setFilterprop(true)}>
+                    <Image src={filter} className="w-10 h-10 p-2 md:w-10" alt="filter" />
+                    <p className={`text-sm p-2 ${montserrat.className}`}>Filter</p>
+                </div>
+                <div className="flex text-sm p-5 pl-7 mt-2">
+                    <label className="w-14 md:mt-20">Sort by:</label>
+                    <select name="sort" id="sort" className="-mt-3 mr-2 p-2 md:mt-17 md:mr-15" value={value} onChange={(e) => {setValue(e.target.value); sortTea(e.target.value)}}>
+                        <option value="A-Z">Alphabetically, A-Z</option>
+                        <option value="Z-A">Alphabetically, Z-A</option>
+                        <option value="low">Price, low to high</option>
+                        <option value="high">rice, high to low</option>
+                    </select>
+                </div>
+            </div>
+            <Filter isOpen={filterprop} onClose={() => setFilterprop(false)} onApply={filterTea} />
+            <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:-mt-15">
+                {sortedTea.map((tea) => (
                     <a href="#" key={tea.id} className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className}`}>
                         <Image className="" height={400} width={400} src={tea.image} alt={tea.name} />
                         <p className="text-xl p-4">{tea.name}</p>
@@ -59,7 +94,7 @@ const Shop : FC = () => {
                     </a>
                 ))}
             </div>
-                
+            
         </div>
     )
 }
