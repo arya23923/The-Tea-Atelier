@@ -33,7 +33,7 @@ interface modal{
 const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
     return(
         <div className={`fixed inset-0 flex items-center justify-center max-h-screen backdrop-blur-sm bg-gray-20 md:z-50 ${isOpen ? "block" : "hidden"}`}>
-            <div className="bg-white w-90 h-170 mt-22 overflow-y-scroll -ml-5 md:hidden ">
+            <div className="bg-white w-90 h-170 mt-22 overflow-y-scroll -ml-0 md:hidden pb-5">
                 {teainfo && (
                     <div className={` flex flex-col justify-center items-center ${montserrat.className}`}>
                         <Image src={teainfo?.image} alt="tea info image" width={400} height={400} className="justify-self-center"/>
