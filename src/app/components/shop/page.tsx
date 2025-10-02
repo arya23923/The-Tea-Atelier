@@ -5,6 +5,7 @@ import Image from "next/image"
 import shop from "@/../public/images/shop-page.jpg"
 import filter from '@/../public/images/filter.png'
 import Filter from "./filter"
+import TeaModal from "./modal"
 
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
@@ -25,6 +26,7 @@ interface Tea {
     name: string;
     price: number;
     image: string
+    description: string;
 }
 
 const Shop : FC = () => {
@@ -32,7 +34,9 @@ const Shop : FC = () => {
     const [load, setLoad] = useState<boolean>(true);
     const [sortedTea, setSortedTea] = useState<Tea[]>([]);
     const [filterprop, setFilterprop] = useState<boolean>(false);
-    const [value, setValue] = useState<string>("A-Z")
+    const [value, setValue] = useState<string>("A-Z");
+    const [modalprop, setModalprop] = useState<boolean>(false);
+    const [modalTea, setModaltea] =  useState<Tea | null>(null);
 
     useEffect(() => {
         const fetchTea = async () => {
@@ -87,14 +91,14 @@ const Shop : FC = () => {
             <Filter isOpen={filterprop} onClose={() => setFilterprop(false)} onApply={filterTea} />
             <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:-mt-15">
                 {sortedTea.map((tea) => (
-                    <a href="#" key={tea.id} className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className}`}>
+                    <a href="#" key={tea.id} className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className}`} onClick={() => {setModaltea(tea); setModalprop(true)}}>
                         <Image className="" height={400} width={400} src={tea.image} alt={tea.name} />
                         <p className="text-xl p-4">{tea.name}</p>
                         <p className="text-lg pb-10">For ₹ {tea.price}</p>
                     </a>
                 ))}
             </div>
-            
+            <TeaModal isOpen={modalprop} isClose={() => setModalprop(false)} teainfo={modalTea} />
         </div>
     )
 }
