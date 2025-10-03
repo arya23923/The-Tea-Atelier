@@ -51,7 +51,7 @@ const Filter:FC<prop> = ({isOpen, onClose, onApply}) => {
                     <p className="text-2xl p-5">-</p>
                     <label className="text-lg">₹ <input type="number" value={max} onChange={(e) => setMax(Number(e.target.value))} className="border border-amber-900 w-50 pr-5 pl-5 pt-3 pb-3 text-lg"/></label>   
                 </div>
-                <button className="flex justify-center p-5 border ml-10 w-50 text-white border-amber-900 bg-amber-900 md:w-117" onClick={apply}>Apply</button>
+                <button className="flex justify-center p-5 border ml-10 w-50 text-white border-amber-900 bg-amber-900 md:w-117 hover:bg-amber-800" onClick={apply}>Apply</button>
             </div>
        </div>
     )

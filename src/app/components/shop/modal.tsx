@@ -54,7 +54,7 @@ const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
                             <p className={`${cormorant.className} text-7xl font-light `}>{teainfo.name}</p>
                             <p className="text-xl pt-10 pb-10">₹ {teainfo.price}</p>
                             <p className="pt-10 pb-25 text-lg w-150">{teainfo.description}</p>
-                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white" onClick={isClose}>ADD TO CART</button>
+                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white hover:cursor-pointer hover:bg-orange-800" onClick={isClose}>ADD TO CART</button>
                         </div>
                     </div>
                 )}
