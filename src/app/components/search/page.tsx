@@ -33,7 +33,7 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
         fetchMatch();
     }, [])
 
-    if(load) return(<>Loading....</>)
+    // if(load) return(<>Loading....</>)
 
     const match = (name_match : string) => {
         if (!tea) return;
@@ -46,7 +46,7 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
     }
 
     return(
-        <div className= {`transition-all h-screen bg-white ${isOpen ? "translate-y-0" : "-translate-y-full"} `}>
+        <div className= {`transition-all h-screen bg-gray-700 ${isOpen ? "block translate-y-0" : "hidden -translate-y-full"} `}>
             <p>Hello</p>
         </div>
     )
