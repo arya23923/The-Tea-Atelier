@@ -7,7 +7,7 @@ import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 
-import SearchComp from '../search/searchComp';
+import SearchComp from './searchComp';
 
 import { Montserrat } from 'next/font/google'
 import Link from 'next/link';
