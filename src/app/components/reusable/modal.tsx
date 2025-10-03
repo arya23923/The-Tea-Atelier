@@ -31,8 +31,9 @@ interface modal{
 }
 
 const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
+   
     return(
-        <div className={`fixed inset-0 flex items-center justify-center max-h-screen backdrop-blur-sm bg-gray-20 md:z-50 ${isOpen ? "block" : "hidden"}`}>
+        <div className={`fixed inset-0 -ml-5 flex items-center justify-center max-h-screen backdrop-blur-sm bg-gray-20 md:z-50 ${isOpen ? "block" : "hidden"}`}>
             <div className="bg-white w-90 h-170 mt-22 overflow-y-scroll -ml-0 md:hidden pb-5">
                 {teainfo && (
                     <div className={` flex flex-col justify-center items-center ${montserrat.className}`}>
@@ -48,13 +49,13 @@ const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
             <div className="hidden md:block bg-white w-auto h-auto mt-10">
                 {teainfo && (
                     <div className="flex flex-row">
-                        <Image src={teainfo.image} alt="tea image" width={700} height={700} />
+                        <Image src={teainfo.image} alt="tea image" width={700} height={700}/>
                         <div className={`flex flex-col w-full p-3 pl-6 pb-10 ${montserrat.className}`}>
                             <Image src={cross} alt="cross" className="w-15 p-3 self-end" onClick={isClose}/>
                             <p className={`${cormorant.className} text-7xl font-light `}>{teainfo.name}</p>
                             <p className="text-xl pt-10 pb-10">₹ {teainfo.price}</p>
                             <p className="pt-10 pb-25 text-lg w-150">{teainfo.description}</p>
-                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white" onClick={isClose}>ADD TO CART</button>
+                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white hover:cursor-pointer hover:bg-orange-800" onClick={isClose}>ADD TO CART</button>
                         </div>
                     </div>
                 )}

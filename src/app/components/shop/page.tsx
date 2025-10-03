@@ -5,7 +5,7 @@ import Image from "next/image"
 import shop from "@/../public/images/shop-page.jpg"
 import filter from '@/../public/images/filter.png'
 import Filter from "./filter"
-import TeaModal from "./modal"
+import TeaModal from "../reusable/modal"
 
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
@@ -89,7 +89,7 @@ const Shop : FC = () => {
                 </div>
             </div>
             <Filter isOpen={filterprop} onClose={() => setFilterprop(false)} onApply={filterTea} />
-            <div className="grid grid-cols-1 md:grid-cols-4 p-5 md:pt-20 justify-center items-center md:-mt-15">
+            <div className="grid grid-cols-1 md:grid-cols-4 md:ml-10 p-5 md:pt-20 justify-center items-center md:-mt-15 pl-0">
                 {sortedTea.map((tea) => (
                     <a href="#" key={tea.id} className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className}`} onClick={() => {setModaltea(tea); setModalprop(true)}}>
                         <Image className="" height={400} width={400} src={tea.image} alt={tea.name} />
