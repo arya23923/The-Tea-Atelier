@@ -5,7 +5,7 @@ import Image from "next/image"
 import shop from "@/../public/images/shop-page.jpg"
 import filter from '@/../public/images/filter.png'
 import Filter from "./filter"
-import TeaModal from "./modal"
+import TeaModal from "../reusable/modal"
 
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
