@@ -67,17 +67,30 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
             <Image src={logo} alt="logo" className="justify-self-center-safe w-25 h-auto self-center-safe"/>
             <Image src={cross} alt="cross" className="justify-self-end w-8 h-8 mr-10" onClick={isClose}/>
             <div className="flex justify-between p-5 mr-5">
-                <input type="text" className="border border-gray-700 p-5 w-60" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => {if(e.key == "Enter") {setQuery(query); match(query)}}}/>
+                <input type="text" placeholder="What are you looking for" className="border border-gray-700 p-5 w-60" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => {if(e.key == "Enter") {setQuery(query); match(query)}}}/>
                 <button className="bg-amber-900 text-white w-25 text-sm" onClick={() => match(query)}>SEARCH</button>
             </div>
             <div className="grid grid-cols-1">
-                {sorted.map((sort) => (
-                    <div className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className} md:grid-cols-4`} key={sort.id}>
-                        <Image className="w-70 h-auto" height={400} width={400} src={sort.image} alt={sort.name} />
+                {sorted.length === 0 ? (
+                    <p>No matches found</p>
+                    ) : (
+                    sorted.map((sort) => (
+                        <div
+                        className={`p-5 relative flex flex-col justify-center items-center ${montserrat.className} md:grid-cols-4`}
+                        key={sort.id}
+                        >
+                        <Image
+                            className="w-70 h-auto"
+                            height={400}
+                            width={400}
+                            src={sort.image}
+                            alt={sort.name}
+                        />
                         <p className="text-xl p-4 md:text-black">{sort.name}</p>
                         <p className="text-lg pb-10 md:text-black">For ₹ {sort.price}</p>
-                    </div>
-                ))}
+                        </div>
+                    ))
+                    )}
             </div>
         </div>
         
@@ -85,3 +98,6 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
 }
 
 export default SearchComp;
+
+
+

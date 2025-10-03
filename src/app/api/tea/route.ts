@@ -66,7 +66,7 @@ const tea = [
   },
   {
     id: 10,
-    name: "Match Tea",
+    name: "Matcha Tea",
     price: 150,
     image: "/images/matcha-tea.jpg",
     description : "Matcha tea is a finely ground powder made from shade-grown green tea leaves, known for its vibrant green color and rich umami flavor. It is popular for its health benefits, including high antioxidant content and potential to boost energy and focus."
