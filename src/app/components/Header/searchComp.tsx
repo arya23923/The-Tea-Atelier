@@ -3,6 +3,7 @@ import{FC, useEffect, useState} from "react"
 import Image from "next/image";
 import cross from '@/../public/images/cross.png'
 import logo from '@/../public/images/logo-site.png'
+import TeaModal from "../reusable/modal";
 
 import { Montserrat } from 'next/font/google'
  
@@ -29,6 +30,8 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
     const [load, setLoad] = useState<boolean>(true);
     const [sorted, setSorted] = useState<Tea[]>([]);
     const [query, setQuery] = useState<string>("");
+    const [modal, setModal] = useState<boolean>(false);
+    const [propTea, setPropTea] = useState<Tea | null>(null);
 
     useEffect(() => {
         const fetchMatch = async () => {
@@ -75,9 +78,9 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
                     <p>No matches found</p>
                     ) : (
                     sorted.map((sort) => (
-                        <div
+                        <a
                         className={`p-5 relative ml-10 justify-center items-center ${montserrat.className}`}
-                        key={sort.id}
+                        key={sort.id} onClick={() => {setModal(true); setPropTea(sort)}}
                         >
                             <Image
                             className="w-70 h-auto md:w-full"
@@ -85,13 +88,14 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
                             width={400}
                             src={sort.image}
                             alt={sort.name}
-                        />
-                        <p className="text-xl p-4 justify-self-center -ml-10">{sort.name}</p>
-                        <p className="text-lg pb-10 justify-self-center -ml-10">For ₹ {sort.price}</p>
-                        </div>
+                            />
+                            <p className="text-xl p-4 justify-self-center -ml-10">{sort.name}</p>
+                            <p className="text-lg pb-10 justify-self-center -ml-10">For ₹ {sort.price}</p>
+                        </a>
                     ))
-                    )}
+                 )}
             </div>
+            <TeaModal isOpen={modal} isClose={() => setModal(false)} teainfo={propTea} />
         </div>
         
     )
