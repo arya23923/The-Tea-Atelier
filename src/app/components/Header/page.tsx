@@ -44,7 +44,7 @@ const Header : FC = () => {
         <header>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
                 <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
-                    <Image className='w-13 h-auto pl-3 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
+                    <Image className='w-13 h-auto p-2 ml-8 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
                     {open && (<div className='flex flex-col justify-around pl-3 h-100 text-sm hover:underline'>
                         <Link href='/components/shop'><p>SHOP</p></Link>
                         <p>INSPIRATION</p>
@@ -52,7 +52,7 @@ const Header : FC = () => {
                         <p>ACCOUNT</p>
                     </div>)}
                 </div>
-                <Link href='/components/Homepage'><Image className={`w-25 ml-3 shrink-0`} src={header_image} alt='header_image' /></Link>
+                <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
                 <a href="#" className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
                 <a href="#" className='inline' onClick={() => setSearchOpen(true)}><Image src={search_icon} className='w-12 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>

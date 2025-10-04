@@ -26,15 +26,11 @@ interface Tea {
     description : string
 }
 
-interface teaArr {
-    arr : Tea[];
-}
-
-const Cart: FC<teaArr> = ({arr}) => {
+const Cart: FC = () => {
     return(
         <div className={`${montserrat.className}`}>
             <Image src={cartCover} alt="cart cover" className=""/>
-            <p className={`p-5 text-2xl -mt-15 ${cormorant.className}`}>Cart</p>
+            <p className={`p-5 text-2xl md:text-6xl -mt-15 md:-mt-35 md:pl-28 ${cormorant.className}`}>Cart</p>
         </div>
     )
 }
