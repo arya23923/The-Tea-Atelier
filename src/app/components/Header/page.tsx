@@ -42,7 +42,7 @@ const Header : FC = () => {
 
     return(
         <header className='relative'>
-            <div className={`absolute inset-x-0 top-0 flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
+            <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
                 <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
                     <Image className='w-13 h-auto pl-3 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
                     {open && (<div className='flex flex-col justify-around pl-3 h-100 text-sm hover:underline'>
