@@ -46,7 +46,7 @@ const Header : FC = () => {
                 <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
                     <Image className='w-13 h-auto pl-3 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
                     {open && (<div className='flex flex-col justify-around h-100 text-sm hover:underline'>
-                        <a>SHOP</a>
+                        <Link href='/components/shop'><a>SHOP</a></Link>
                         <a>INSPIRATION</a>
                         <a>CONTACT</a>
                         <a>ACCOUNT</a>
@@ -64,30 +64,32 @@ const Header : FC = () => {
                     setLogo("/images/inverted-logo.png"); setSearch("/images/invert-search.png");
                 }
             }}>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <Link href='/components/shop'>
+                    <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>SHOP</a>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>SHOP</p>
+                </Link>
+                <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>INSPIRATION</a>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>INSPIRATION</p>
+                <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>CONTACT</a>
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>CONTACT</p>
                 <Link href="/components/Homepage" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"}`}><Image src={logo} width={170} height={150} alt='header_image'/></Link>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <span className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} flex group-hover:text-black`} onClick={() => setSearchOpen(true)}>
                     <p className=''>SEARCH</p>
                     <Image src={search} width={10} height={10} className='w-7 p-1.5 pt-1' alt='search'/>
-                </a>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                </span>
+                <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</a>
-                <a href="#" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>
+                <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>CART</a>
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>CART</p>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
         </header>
