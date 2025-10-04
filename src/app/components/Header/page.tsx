@@ -7,6 +7,11 @@ import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 
+// Importing the RootState type from the store definition.
+import { RootState } from "@/lib/store";
+// Importing the useSelector hook from react-redux to access the Redux store's state.
+import { useSelector } from "react-redux";
+
 import SearchComp from './searchComp';
 
 import { Montserrat } from 'next/font/google'
@@ -18,6 +23,7 @@ const montserrat = Montserrat({
 });
 
 const Header : FC = () => {
+    const countState = useSelector((state: RootState) => state.counter.value);
     const [open, setOpen] = useState<boolean>(false);
     const [logo, setLogo] = useState("/images/inverted-logo.png");
     const [search, setSearch] = useState("/images/invert-search.png");
@@ -40,6 +46,8 @@ const Header : FC = () => {
         return () => window.removeEventListener("scroll", handlescroll);
     }, []);
 
+    console.log(countState);
+
     return(
         <header>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
@@ -53,8 +61,9 @@ const Header : FC = () => {
                     </div>)}
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
-                <a href="#" className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
-                <a href="#" className='inline' onClick={() => setSearchOpen(true)}><Image src={search_icon} className='w-12 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
+                <a className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
+                <p className='mt-12 pr-3'>({countState})</p>
+                <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
             <div className={`hidden md:flex justify-around items-center p-3 text-white backdrop-blur-xl fixed w-screen z-40 group hover:bg-white ${scroll ? "bg-white" : "backdrop-blur-xl"}`} onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {
@@ -81,15 +90,18 @@ const Header : FC = () => {
                 <div className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} flex group-hover:text-black`} onClick={() => setSearchOpen(true)}>
-                    <p className=''>SEARCH</p>
+                    <p>SEARCH</p>
                     <Image src={search} width={10} height={10} className='w-7 p-1.5 pt-1' alt='search'/>
                 </div>
                 <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>
-                <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <div className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>CART</p>
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
+                    <p>CART</p>
+                    <p>({countState})</p>
+                </div>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
         </header>
