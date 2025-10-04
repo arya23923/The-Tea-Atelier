@@ -19,7 +19,7 @@ interface teaArr {
 const Cart: FC<teaArr> = ({arr}) => {
     return(
         <>
-            <Image src={cartCover} alt="cart cover" className="w-full"/>
+            <Image src={cartCover} alt="cart cover" className=""/>
         </>
     )
 }
