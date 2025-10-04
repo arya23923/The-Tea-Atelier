@@ -2,6 +2,10 @@ import { FC, useState } from "react";
 import cross from '@/../public/images/cross.png'
 import Image from "next/image";
 
+import { decrement, increment } from "@/lib/features/CounterState/CounterSlice"
+import { RootState } from "@/lib/store";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Montserrat } from 'next/font/google'
 import { Cormorant } from "next/font/google";
 
@@ -31,7 +35,11 @@ interface modal{
 }
 
 const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
-   
+
+    const dispatch = useDispatch();
+    const [val, setVal] = useState<number>(1);
+    const countState = useSelector((state: RootState) => state.counter.value);
+    
     return(
         <div className={`fixed inset-0 -ml-5 flex items-center justify-center max-h-screen backdrop-blur-sm bg-gray-20 md:z-50 ${isOpen ? "block" : "hidden"}`}>
             <div className="bg-white w-90 h-170 mt-22 overflow-y-scroll -ml-0 md:hidden pb-5">
@@ -42,7 +50,7 @@ const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
                         <p className={`text-4xl self-start p-5 pb-1 pt-2 font-light ${cormorant.className}`}>{teainfo.name}</p>
                         <p className="text-lg self-start p-5 pt-1 font-light">₹ {teainfo.price}</p>
                         <p className="text-sm p-5 pt-2">{teainfo.description}</p>
-                        <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-50 text-white" onClick={isClose}>ADD TO CART</button>
+                        <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-50 text-white" onClick={() => {isClose(); dispatch(increment(val))}}>ADD TO CART</button>
                     </div>
                 )}
             </div>
@@ -55,7 +63,7 @@ const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
                             <p className={`${cormorant.className} text-7xl font-light `}>{teainfo.name}</p>
                             <p className="text-xl pt-10 pb-10">₹ {teainfo.price}</p>
                             <p className="pt-10 pb-25 text-lg w-150">{teainfo.description}</p>
-                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white hover:cursor-pointer hover:bg-orange-800" onClick={isClose}>ADD TO CART</button>
+                            <button className="bg-orange-950 pt-3 pb-3 pr-5 pl-5 w-150 text-white hover:cursor-pointer hover:bg-orange-800" onClick={() => {isClose(); dispatch(increment(val))}}>ADD TO CART</button>
                         </div>
                     </div>
                 )}
