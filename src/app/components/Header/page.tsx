@@ -41,7 +41,7 @@ const Header : FC = () => {
     }, []);
 
     return(
-        <header className='relative'>
+        <header>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
                 <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
                     <Image className='w-13 h-auto pl-3 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
@@ -78,12 +78,12 @@ const Header : FC = () => {
                 <Link href="/components/Homepage" className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"}`}><Image src={logo} width={170} height={150} alt='header_image'/></Link>
-                <span className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <div className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} flex group-hover:text-black`} onClick={() => setSearchOpen(true)}>
                     <p className=''>SEARCH</p>
                     <Image src={search} width={10} height={10} className='w-7 p-1.5 pt-1' alt='search'/>
-                </span>
+                </div>
                 <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>

@@ -75,7 +75,7 @@ const Shop : FC = () => {
             <p className={`z-20 -mt-17 p-5 text-2xl md:text-6xl md:-mt-40 md:ml-10 ${cormorant.className}`}>Browse our blends</p>
             <div className={`flex justify-between md:w-screen ${montserrat.className}`}>
                 <div className={`flex p-5 ml-5 md:ml-10 md:mt-20 hover:cursor-pointer `}  onClick={() => setFilterprop(true)}>
-                    <Image src={filter} className="w-10 h-10 p-2 md:w-10" alt="filter" />
+                    <Image src={filter} className="w-10 h-10 p-2 -ml-7 md:ml-0 md:w-10" alt="filter" />
                     <p className={`text-sm p-2 ${montserrat.className}`}>Filter</p>
                 </div>
                 <div className="flex text-sm p-5 pl-7 mt-2">
