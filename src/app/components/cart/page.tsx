@@ -9,10 +9,9 @@ import Link from "next/link"
 import { Cormorant } from "next/font/google";
 import { Montserrat } from 'next/font/google'
 
-// Importing the RootState type from the store definition.
+import { removeItem, updateQuantity } from "@/lib/features/CounterState/CounterSlice"
 import { RootState } from "@/lib/store";
-// Importing the useSelector hook from react-redux to access the Redux store's state.
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -29,6 +28,7 @@ const montserrat = Montserrat({
 const Cart: FC = () => {
   const countState = useSelector((state: RootState) => state.counter.value);
   const Cart = useSelector((state: RootState) => state.counter.cart);
+  const dispatch = useDispatch();
 
   const total = Cart?.reduce((sum, tea) => sum + tea.price * tea.quantity, 0) ?? 0;
 
@@ -42,15 +42,16 @@ const Cart: FC = () => {
                     <div className="flex justify-evenly">
                       <Image src={cart.image} alt="tea image" width={300} height={300} className="w-30 pl-0"/>
                       <div className={`p-5 self-center ${cormorant.className} text-2xl`}>{cart.name}</div>
-                      <div className={`p-5 self-center w-full ${montserrat.className}`}>₹ {cart.price}</div>
+                      <div className={`p-1 self-center w-full ${montserrat.className}`}>₹ {cart.price}</div>
+                      <div className={`p-0 self-center w-full ${montserrat.className}`}>₹ {cart.price * cart.quantity}</div>
                     </div>
                     <div className="flex justify-between">
                       <div className="flex border border-black justify-evenly w-35 mt-5 p-3 ml-0 self-center">
-                          <div className="hover:cursor-pointer self-center">+</div>
+                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : 1}))}>+</div>
                           <div className="self-center">{cart.quantity}</div>
-                          <div className="hover:cursor-pointer self-center">-</div>
+                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : -1}))}>-</div>
                       </div>
-                      <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer"/>
+                      <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({tea : cart}))}/>
                     </div>
                   </div>
                 ))}

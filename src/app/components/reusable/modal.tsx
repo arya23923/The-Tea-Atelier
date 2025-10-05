@@ -37,7 +37,6 @@ interface modal{
 const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
 
     const dispatch = useDispatch();
-    const [val, setVal] = useState<number>(1);
     const countState = useSelector((state: RootState) => state.counter.value);
     
     return(
