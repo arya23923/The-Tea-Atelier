@@ -46,7 +46,6 @@ const Header : FC = () => {
         return () => window.removeEventListener("scroll", handlescroll);
     }, []);
 
-    console.log(countState);
 
     return(
         <header>
@@ -61,7 +60,7 @@ const Header : FC = () => {
                     </div>)}
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
-                <a className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
+                <Link href='/components/cart' className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></Link>
                 <p className='mt-12 pr-3'>({countState})</p>
                 <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
@@ -96,12 +95,12 @@ const Header : FC = () => {
                 <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>
-                <div className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
+                <Link href='/components/cart' className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
                     <p>CART</p>
                     <p>({countState})</p>
-                </div>
+                </Link>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
         </header>
