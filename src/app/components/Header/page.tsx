@@ -23,7 +23,7 @@ const montserrat = Montserrat({
 });
 
 const Header : FC = () => {
-    const countState = useSelector((state: RootState) => state.counter.value);
+    // const countState = useSelector((state: RootState) => state.counter.value);
     const [open, setOpen] = useState<boolean>(false);
     const [logo, setLogo] = useState("/images/inverted-logo.png");
     const [search, setSearch] = useState("/images/invert-search.png");
@@ -46,7 +46,6 @@ const Header : FC = () => {
         return () => window.removeEventListener("scroll", handlescroll);
     }, []);
 
-    console.log(countState);
 
     return(
         <header>
@@ -62,7 +61,7 @@ const Header : FC = () => {
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
                 <a className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></a>
-                <p className='mt-12 pr-3'>({countState})</p>
+                {/* <p className='mt-12 pr-3'>({countState})</p> */}
                 <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
@@ -100,7 +99,7 @@ const Header : FC = () => {
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
                     <p>CART</p>
-                    <p>({countState})</p>
+                    {/* <p>({countState})</p> */}
                 </div>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
