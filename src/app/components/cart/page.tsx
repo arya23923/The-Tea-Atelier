@@ -26,7 +26,6 @@ const montserrat = Montserrat({
 
 
 const Cart: FC = () => {
-  const countState = useSelector((state: RootState) => state.counter.value);
   const Cart = useSelector((state: RootState) => state.counter.cart);
   const dispatch = useDispatch();
 
@@ -56,7 +55,31 @@ const Cart: FC = () => {
                   </div>
                 ))}
             </div>
-            <p className="flex justify-center p-5 w-full">SUBTOTAL : ₹ {total}</p>
+            <div className="hidden md:block md:mt-20">
+              <div className={`flex justify-evenly border border-black p-5 ${montserrat.className}`}>
+                <p>PRODUCT</p>
+                <p>PRICE</p>
+                <p>QUANTITY</p>
+                <p>TOTAL</p>
+              </div>
+              {Cart.length > 0 && Cart.map((cart) => (
+                <div className={`flex justify-evenly p-5 border-b border-black ${montserrat.className}`}>
+                  <div className="flex justify-self-start">
+                    <Image src={cart.image} alt="image" height={200} width={200}/>
+                    <p className={`${cormorant.className} md:text-2xl p-5 self-center w-20`}>{cart.name}</p>
+                  </div>
+                  <p className="self-center justify-self-center">₹ {cart.price}</p>
+                  <div className="flex border border-black justify-evenly w-35 mt-5 p-3 self-center">
+                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : 1}))}>+</div>
+                        <div className="self-center">{cart.quantity}</div>
+                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : -1}))}>-</div>
+                    </div>
+                  <p className="justify-self-center self-center">₹ {cart.price * cart.quantity}</p>
+                  <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({tea : cart}))}/>
+                </div>
+              ))}
+            </div>
+            <p className="flex justify-center p-5 w-full font-bold">SUBTOTAL : ₹ {total}</p>
             <button className={`bg-red-900 content-center pt-3 pb-3 pr-5 pl-5 text-white w-80 ml-13 mb-10 hover:bg-red-800 ${montserrat.className}`}>CHECK OUT</button>
             <Link href='/components/shop' className={`${cormorant.className} text-2xl content-center underline p-5 ml-25`}>Continue shopping</Link>
         </div>
