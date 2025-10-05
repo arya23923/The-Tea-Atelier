@@ -57,10 +57,11 @@ const Cart: FC = () => {
             </div>
             <div className="hidden md:block md:mt-20">
               <div className={`flex justify-evenly border border-black p-5 ${montserrat.className}`}>
-                <p>PRODUCT</p>
-                <p>PRICE</p>
-                <p>QUANTITY</p>
-                <p>TOTAL</p>
+                <p className="">PRODUCT</p>
+                <p className="ml-35">PRICE</p>
+                <p className="ml-0">QUANTITY</p>
+                <p className="">TOTAL</p>
+                <p className=""></p>
               </div>
               {Cart.length > 0 && Cart.map((cart) => (
                 <div className={`flex justify-evenly p-5 border-b border-black ${montserrat.className}`}>
@@ -80,7 +81,7 @@ const Cart: FC = () => {
               ))}
             </div>
             <p className="flex justify-center p-5 w-full font-bold">SUBTOTAL : ₹ {total}</p>
-            <button className={`bg-red-900 content-center pt-3 pb-3 pr-5 pl-5 text-white w-80 ml-13 mb-10 hover:bg-red-800 ${montserrat.className}`}>CHECK OUT</button>
+            <button className={`bg-red-900 content-center pt-3 pb-3 pr-5 pl-5 text-white w-80 ml-13 mb-10 hover:bg-red-800 md:ml-150 md:mt-10 ${montserrat.className}`}>CHECK OUT</button>
             <Link href='/components/shop' className={`${cormorant.className} text-2xl content-center underline p-5 ml-25`}>Continue shopping</Link>
         </div>
     )
