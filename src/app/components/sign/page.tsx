@@ -21,7 +21,7 @@ const signPage : FC = () => {
                 <p className="hover:underline hover:cursor-pointer md:text-xl">Already a user ? Login here</p>
                 <button className="flex w-60 justify-center p-5 space-x-3 border border-gray-800 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-0">
                     <Image src={google} alt="google" className="w-5 h-5"/>
-                    <p>Login with google</p>
+                    <p>Login with Google</p>
                 </button>
             </div>
         </div>
