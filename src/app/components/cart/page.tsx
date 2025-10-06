@@ -64,7 +64,7 @@ const Cart: FC = () => {
                 <p className=""></p>
               </div>
               {Cart.length > 0 && Cart.map((cart) => (
-                <div className={`flex justify-evenly p-5 border-b border-black ${montserrat.className}`}>
+                <div className={`flex justify-evenly p-5 border-b border-black ${montserrat.className}`} key={cart.id}>
                   <div className="flex justify-self-start">
                     <Image src={cart.image} alt="image" height={200} width={200}/>
                     <p className={`${cormorant.className} md:text-2xl p-5 self-center w-20`}>{cart.name}</p>
