@@ -18,7 +18,7 @@ const loginPage : FC = () => {
                 <p className="text-xl md:text-5xl">Hello,</p>
                 <p className="text-xl md:text-5xl">Welcome back!</p>
                 <form action="" className="flex flex-col space-y-4">
-                    <input type="text" placeholder="Enter email address" className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-300 md:w-100 md:mt-10 text-black"></input>
+                    <input type="email" placeholder="Enter email address" className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-300 md:w-100 md:mt-10 text-black"></input>
                     <input type="password" placeholder="Enter password" className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-300 md:w-100 text-black"></input>
                     <button className="pt-3 pb-3 pr-5 pl-5 bg-blue-600 text-white rounded-sm">Log In</button>
                 </form>
