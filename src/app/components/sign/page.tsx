@@ -13,7 +13,7 @@ const signPage : FC = () => {
     return(
         <div className={`${montserrat.className} flex`}>
             <Image src={signImage} alt="sign in image" className="hidden md:block h-screen w-auto"/>
-            <div className="flex flex-col justify-between items-center w-full h-100 mt-30 md:mt-70 md:h-120">
+            <div className="flex flex-col justify-between items-center w-full h-100 mt-30 md:mt-70 md:h-130">
                 <p className="text-xl md:text-5xl">Create an account</p>
                 <input type="text" placeholder="Enter email address" className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-400 md:w-100 text-white"></input>
                 <input type="password" placeholder="Enter password" className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-400 md:w-100 text-white"></input>
