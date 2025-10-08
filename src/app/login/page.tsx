@@ -51,7 +51,7 @@ const loginPage : FC = () => {
                     <button className="pt-3 pb-3 pr-5 pl-5 bg-blue-600 text-white rounded-sm" onClick={handleLogin}>Log In</button>
                 </form>
                 <p className="hover:underline hover:cursor-pointer md:text-xl md:mt-5" onClick={handleSign}>Not registered ? Create an account</p>
-                <button className="flex w-60 justify-center p-5 space-x-3 border border-gray-800 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-5">
+                <button className="flex w-60 justify-center p-5 space-x-3 border border-gray-800 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-5" onClick={() => signIn("google", { callbackUrl: "/components/shop" })}>
                     <Image src={google} alt="google" className="w-5 h-5"/>
                     <p>Login with Google</p>
                 </button>
