@@ -31,7 +31,7 @@ const loginPage : FC = () => {
         if (res?.error) {
             alert(res.error);
         } else {
-            window.location.href = "/";
+            window.location.href = "/components/shop";
         }
     };
 

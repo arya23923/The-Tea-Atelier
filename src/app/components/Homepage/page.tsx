@@ -1,8 +1,8 @@
 "use client"
 
 import { FC, useState } from "react"
-import Link from 'next/link'
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Inria_Serif } from 'next/font/google'
 
@@ -14,18 +14,9 @@ const inriaSerif = Inria_Serif({
 
 const Home : FC = () => {
     const router = useRouter();
-    // const { data: session } = useSession();
-
-    // const handleClick = () => {
-    //     if (!session) {
-    //     router.push("/sign"); 
-    //     } else {
-    //     router.push("/dashboard"); 
-    //     }
-    // };
 
     const handleClick = () => {
-        router.push("/components/shop")
+        router.push("/sign")
     }
     return(
         <div className={`bg-[url(/images/home-page.jpg)] bg-cover md:bg-cover w-screen h-screen ${inriaSerif.className}`}>
