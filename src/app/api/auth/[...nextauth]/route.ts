@@ -38,7 +38,7 @@ export const authOptions: AuthOptions = {
 
   secret: process.env.AUTH_SECRET,
 
-  pages: { signIn: "/login" },
+  pages: { signIn: "/components/shop" },
 
   callbacks: {
     async jwt({ token, user }) {
