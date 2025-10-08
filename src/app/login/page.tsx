@@ -5,7 +5,7 @@ import Image from "next/image";
 import loginImage from '@/../public/images/login.jpg'
 import google from '@/../public/images/google.png'
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import { Montserrat } from 'next/font/google'
 const montserrat = Montserrat({

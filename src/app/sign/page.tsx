@@ -4,7 +4,7 @@ import {FC, useState} from "react"
 import Image from "next/image";
 import signImage from '@/../public/images/signin.jpg'
 import google from '@/../public/images/google.png'
-import { Router, useRouter } from "next/router";
+import {  useRouter } from "next/navigation";
 
 import { Montserrat } from 'next/font/google'
 const montserrat = Montserrat({
