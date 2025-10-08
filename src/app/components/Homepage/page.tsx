@@ -1,15 +1,14 @@
 "use client"
 
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 import { Inria_Serif } from 'next/font/google'
 
 const inriaSerif = Inria_Serif({
   subsets: ['latin'],
   weight: ['300', '400', '700'], 
-  style: ['normal', 'italic'],   
+  style: ['normal', 'italic'],  
 });
 
 const Home : FC = () => {
