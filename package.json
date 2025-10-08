@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.17.0",
     "@reduxjs/toolkit": "^2.9.0",
+    "bcryptjs": "^3.0.2",
     "next": "15.3.4",
+    "next-auth": "^4.24.11",
+    "prisma": "^6.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-range-slider-input": "^3.2.1",
