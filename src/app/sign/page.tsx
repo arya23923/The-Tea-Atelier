@@ -4,6 +4,7 @@ import {FC, useState} from "react"
 import Image from "next/image";
 import signImage from '@/../public/images/signin.jpg'
 import google from '@/../public/images/google.png'
+import { Router, useRouter } from "next/router";
 
 import { Montserrat } from 'next/font/google'
 const montserrat = Montserrat({
@@ -12,6 +13,7 @@ const montserrat = Montserrat({
 });
 
 const signPage : FC = () => {
+    const router = useRouter();
     const[name, setName] = useState<string>('');
     const[email, setEmail] = useState<string>('');
     const[password, setPassword] = useState<string>('');
@@ -34,6 +36,9 @@ const signPage : FC = () => {
         }
     };
 
+    const handleLogin = () => {
+        router.push('/login');
+    }
 
     return(
         <div className={`${montserrat.className} flex`}>
@@ -46,7 +51,7 @@ const signPage : FC = () => {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required className="border border-gray-400 pt-3 pb-3 pr-5 pl-5 rounded-sm bg-gray-300 md:w-100 text-black"></input>
                     <button className="pt-3 pb-3 pr-5 pl-5 bg-blue-600 text-white rounded-sm" onClick={handleSubmit}>Sign In</button>
                 </form>
-                <p className="hover:underline hover:cursor-pointer md:text-xl">Already a user ? Login here</p>
+                <p className="hover:underline hover:cursor-pointer md:text-xl" onClick={handleLogin}>Already a user ? Login here</p>
                 <button type="submit" className="flex w-60 justify-center p-5 space-x-3 border border-gray-500 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-0">
                     <Image src={google} alt="google" className="w-5 h-5"/>
                     <p>Login with Google</p>
