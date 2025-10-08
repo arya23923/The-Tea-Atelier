@@ -1,3 +1,5 @@
+"use client"
+
 import {FC, useState} from "react"
 import Image from "next/image";
 import signImage from '@/../public/images/signin.jpg'
@@ -25,6 +27,7 @@ const signPage : FC = () => {
 
         if (res.ok) {
             alert("User registered! You can now log in.");
+            window.location.href = "/login";
         } else {
             const { error } = await res.json();
             alert(error);

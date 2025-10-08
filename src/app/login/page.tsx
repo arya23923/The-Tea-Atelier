@@ -1,3 +1,5 @@
+"use client"
+
 import {FC, useState} from "react"
 import Image from "next/image";
 import loginImage from '@/../public/images/login.jpg'
