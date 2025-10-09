@@ -6,6 +6,7 @@ import header_image from '@/../public/images/logo-site.png'
 import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
+import { useIsHydrated } from "@/hooks/useIsHydrated";
 
 // Importing the RootState type from the store definition.
 import { RootState } from "@/lib/store";
@@ -29,6 +30,7 @@ const Header : FC = () => {
     const [search, setSearch] = useState("/images/invert-search.png");
     const [scroll, setScroll] = useState<boolean>(false);
     const [searchOpen, setSearchOpen] = useState<boolean>(false);
+    const hydrated = useIsHydrated();
 
     useEffect(() => {
         const handlescroll = () => {
@@ -61,7 +63,7 @@ const Header : FC = () => {
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
                 <Link href='/components/cart' className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></Link>
-                <p className='mt-12 pr-3'>({countState})</p>
+                <p className='mt-12 pr-3'>({hydrated ? countState : 0})</p>
                 <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
@@ -99,7 +101,7 @@ const Header : FC = () => {
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
                     <p>CART</p>
-                    <p>({countState})</p>
+                    <p>({hydrated ? countState : 0})</p>
                 </Link>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
