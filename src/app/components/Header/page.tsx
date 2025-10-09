@@ -6,10 +6,11 @@ import header_image from '@/../public/images/logo-site.png'
 import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
+import { useIsHydrated } from "@/hooks/useIsHydrated";
+import { isLoggedIn, getUser, logout } from "@/lib/auth";
+import {useRouter} from 'next/navigation';
 
-// Importing the RootState type from the store definition.
 import { RootState } from "@/lib/store";
-// Importing the useSelector hook from react-redux to access the Redux store's state.
 import { useSelector } from "react-redux";
 
 import SearchComp from './searchComp';
@@ -29,6 +30,14 @@ const Header : FC = () => {
     const [search, setSearch] = useState("/images/invert-search.png");
     const [scroll, setScroll] = useState<boolean>(false);
     const [searchOpen, setSearchOpen] = useState<boolean>(false);
+    const hydrated = useIsHydrated();
+    const [user, setUser] = useState<any>(null);
+    const router = useRouter();
+    const [dropdown, setDropdown] = useState<boolean>(false);
+
+    useEffect(() => {
+        setUser(getUser());
+    }, []);
 
     useEffect(() => {
         const handlescroll = () => {
@@ -46,22 +55,42 @@ const Header : FC = () => {
         return () => window.removeEventListener("scroll", handlescroll);
     }, []);
 
+    const handleLogin = () => {
+        router.push('/login')
+    }
+
+    const handleSign = () => {
+        router.push('/sign')
+    }
+
+     const handleLogout = () => {
+        logout(); // remove from localStorage
+        setUser(null);
+    };
+
 
     return(
         <header>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
-                <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
+                <div className={`p-3 transition-all duration-300 ${open ? 'w-60 border-r border-r-gray-400 h-screen fixed bg-white z-50' : 'w-30'}`}>
                     <Image className='w-13 h-auto p-2 ml-8 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
                     {open && (<div className='flex flex-col justify-around pl-3 h-100 text-sm hover:underline'>
                         <Link href='/components/shop'><p>SHOP</p></Link>
                         <p>INSPIRATION</p>
                         <p>CONTACT</p>
-                        <p>ACCOUNT</p>
+                        {user ? (
+                            <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogout}>Log out</button>
+                        ) : (
+                            <div className='justify-between h-30'>
+                                <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogin}>LOG IN</button>
+                                <p className='pt-5' onClick={handleSign}>Not a user ? create account</p>
+                            </div>
+                        )}
                     </div>)}
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
                 <Link href='/components/cart' className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></Link>
-                <p className='mt-12 pr-3'>({countState})</p>
+                <p className='mt-12 pr-3'>({hydrated ? countState : 0})</p>
                 <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
@@ -94,13 +123,25 @@ const Header : FC = () => {
                 </div>
                 <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`} onClick={() => setDropdown(!dropdown)}>ACCOUNT</p>    
                 <Link href='/components/cart' className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
                     <p>CART</p>
-                    <p>({countState})</p>
+                    <p>({hydrated ? countState : 0})</p>
                 </Link>
+                {hydrated && dropdown && (
+                    <div className='absolute mt-50 bg-white text-black p-5 justify-self-end h-30 justify-between -mr-280 border border-gray-700'>
+                        {user ? (
+                            <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogout}>LOG OUT</button>
+                        ) : (
+                            <div>
+                                <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogin}>LOG IN</button>
+                                <p onClick={handleSign} className='hover:cursor-pointer pt-3'>Not a user ? create an account</p>
+                            </div>
+                        )}
+                    </div>
+                ) }
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
         </header>

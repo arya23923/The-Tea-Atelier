@@ -24,10 +24,21 @@ export interface CounterState {
   value: number;
   cart : TeaCart[],
 }
-const initialState: CounterState = {
-  value: 0,
-  cart : [],
+
+const loadCartFromLocalStorage = (): CounterState => {
+  try {
+    const stored = localStorage.getItem("cartState");
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (error) {
+    console.error("Error loading cart from localStorage:", error);
+  }
+  return { value: 0, cart: [] };
 };
+
+const initialState: CounterState =
+  typeof window !== "undefined" ? loadCartFromLocalStorage() : { value: 0, cart: [] };
 
 export const CounterSlice = createSlice({
   name: "counter",
