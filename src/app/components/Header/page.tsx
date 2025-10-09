@@ -8,10 +8,9 @@ import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 import { useIsHydrated } from "@/hooks/useIsHydrated";
 import { isLoggedIn, getUser, logout } from "@/lib/auth";
+import {useRouter} from 'next/navigation';
 
-// Importing the RootState type from the store definition.
 import { RootState } from "@/lib/store";
-// Importing the useSelector hook from react-redux to access the Redux store's state.
 import { useSelector } from "react-redux";
 
 import SearchComp from './searchComp';
@@ -32,6 +31,13 @@ const Header : FC = () => {
     const [scroll, setScroll] = useState<boolean>(false);
     const [searchOpen, setSearchOpen] = useState<boolean>(false);
     const hydrated = useIsHydrated();
+    const [user, setUser] = useState<any>(null);
+    const router = useRouter();
+    const [dropdown, setDropdown] = useState<boolean>(false);
+
+    useEffect(() => {
+        setUser(getUser());
+    }, []);
 
     useEffect(() => {
         const handlescroll = () => {
@@ -49,6 +55,19 @@ const Header : FC = () => {
         return () => window.removeEventListener("scroll", handlescroll);
     }, []);
 
+    const handleLogin = () => {
+        router.push('/login')
+    }
+
+    const handleSign = () => {
+        router.push('/sign')
+    }
+
+     const handleLogout = () => {
+        logout(); // remove from localStorage
+        setUser(null);
+    };
+
 
     return(
         <header>
@@ -59,8 +78,14 @@ const Header : FC = () => {
                         <Link href='/components/shop'><p>SHOP</p></Link>
                         <p>INSPIRATION</p>
                         <p>CONTACT</p>
-                        <button>LOG IN</button>
-                        <p>Not a user ? create account</p>
+                        {user ? (
+                            <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogout}>Log out</button>
+                        ) : (
+                            <div className='justify-between h-30'>
+                                <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogin}>LOG IN</button>
+                                <p className='pt-5' onClick={handleSign}>Not a user ? create account</p>
+                            </div>
+                        )}
                     </div>)}
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
@@ -98,13 +123,25 @@ const Header : FC = () => {
                 </div>
                 <p className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
-                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black`}>ACCOUNT</p>
+                    after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`} onClick={() => setDropdown(!dropdown)}>ACCOUNT</p>    
                 <Link href='/components/cart' className={`relative after:content-[''] after:absolute after:left-0 after:bottom-0
                     after:w-0 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300 hover:after:w-full ${scroll ? "text-black" : "text-white"} group-hover:text-black flex`}>
                     <p>CART</p>
                     <p>({hydrated ? countState : 0})</p>
                 </Link>
+                {hydrated && dropdown && (
+                    <div className='absolute mt-50 bg-white text-black p-5 justify-self-end h-30 justify-between -mr-280 border border-gray-700'>
+                        {user ? (
+                            <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogout}>LOG OUT</button>
+                        ) : (
+                            <div>
+                                <button className='justify-self-center text-white bg-amber-900 pt-3 pb-3 pr-5 pl-5 w-full' onClick={handleLogin}>LOG IN</button>
+                                <p onClick={handleSign} className='hover:cursor-pointer pt-3'>Not a user ? create an account</p>
+                            </div>
+                        )}
+                    </div>
+                ) }
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
         </header>
