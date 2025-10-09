@@ -1,52 +1,52 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth from "next-auth";
+import type { AuthOptions, Session, User as NextAuthUser } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
-export const authOptions: AuthOptions = {
+declare module "next-auth" {
+  interface Session {
+    user: { id: string } & Session["user"];
+  }
+  interface JWT { id?: string; }
+}
+
+const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID as string,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+      clientId: process.env.AUTH_GOOGLE_ID!,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
     }),
-
     CredentialsProvider({
       name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
+      credentials: { email: { label: "Email", type: "text" }, password: { label: "Password", type: "password" } },
+      async authorize(credentials): Promise<NextAuthUser | null> {
         if (!credentials?.email || !credentials.password) return null;
-
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
-
+        const user = await prisma.user.findUnique({ where: { email: credentials.email } });
         if (!user) return null;
-
         const isValid = await bcrypt.compare(credentials.password, user.password);
         if (!isValid) return null;
 
-        return user;
+        return {
+          id: user.id,
+          name: user.name ?? null,
+          email: user.email ?? null,
+        };
       },
     }),
   ],
-
   session: { strategy: "jwt" },
-
-  secret: process.env.AUTH_SECRET,
-
-  pages: { signIn: "/components/shop" },
-
+  secret: process.env.AUTH_SECRET!,
+  pages: { signIn: "/sign" },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: NextAuthUser }) {
       if (user) token.id = user.id;
-      return token;
+      return token as JWT;
     },
-    async session({ session, token }) {
-      if (token && session.user) session.user.id = token.id as string;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session.user && token.id) session.user.id = token.id;
       return session;
     },
   },
