@@ -3,8 +3,7 @@ import cross from '@/../public/images/cross.png'
 import Image from "next/image";
 
 import { addItem } from "@/lib/features/CounterState/CounterSlice"
-import { RootState } from "@/lib/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Montserrat } from 'next/font/google'
 import { Cormorant } from "next/font/google";
