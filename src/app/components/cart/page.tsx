@@ -1,6 +1,6 @@
 "use client"
 
-import {FC, useState} from "react"
+import {FC} from "react"
 import Image from "next/image"
 import cartCover from '@/../public/images/cart-page.jpg'
 import dustbin from '@/../public/images/dustbin.png'
