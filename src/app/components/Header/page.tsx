@@ -7,7 +7,7 @@ import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 import { useIsHydrated } from "@/hooks/useIsHydrated";
-import { isLoggedIn, getUser, logout } from "@/lib/auth";
+import { getUser, logout } from "@/lib/auth";
 import {useRouter} from 'next/navigation';
 
 import { RootState } from "@/lib/store";
@@ -23,6 +23,11 @@ const montserrat = Montserrat({
   weight: ["400", "700"], 
 });
 
+interface User {
+  name?: string;
+  email?: string;
+}
+
 const Header : FC = () => {
     const countState = useSelector((state: RootState) => state.counter.value);
     const [open, setOpen] = useState<boolean>(false);
@@ -31,7 +36,7 @@ const Header : FC = () => {
     const [scroll, setScroll] = useState<boolean>(false);
     const [searchOpen, setSearchOpen] = useState<boolean>(false);
     const hydrated = useIsHydrated();
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
     const [dropdown, setDropdown] = useState<boolean>(false);
 
