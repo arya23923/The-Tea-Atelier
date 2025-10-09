@@ -7,6 +7,7 @@ import menu from '@/../public/images/menu.png'
 import cart from '@/../public/images/shop.png'
 import search_icon from '@/../public/images/search.png'
 import { useIsHydrated } from "@/hooks/useIsHydrated";
+import { isLoggedIn, getUser, logout } from "@/lib/auth";
 
 // Importing the RootState type from the store definition.
 import { RootState } from "@/lib/store";
@@ -52,13 +53,14 @@ const Header : FC = () => {
     return(
         <header>
             <div className={`flex justify-start p-5 md:hidden ${montserrat.className} bg-white z-40 pl-0`}>
-                <div className={`p-3 transition-all duration-300 ${open ? 'w-40 border-r border-r-gray-400 h-screen' : 'w-30'}`}>
+                <div className={`p-3 transition-all duration-300 ${open ? 'w-60 border-r border-r-gray-400 h-screen fixed bg-white z-50' : 'w-30'}`}>
                     <Image className='w-13 h-auto p-2 ml-8 pt-8' src={menu} alt='menu' onClick={() => setOpen(!open)}/>
                     {open && (<div className='flex flex-col justify-around pl-3 h-100 text-sm hover:underline'>
                         <Link href='/components/shop'><p>SHOP</p></Link>
                         <p>INSPIRATION</p>
                         <p>CONTACT</p>
-                        <p>ACCOUNT</p>
+                        <button>LOG IN</button>
+                        <p>Not a user ? create account</p>
                     </div>)}
                 </div>
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>

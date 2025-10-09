@@ -29,9 +29,20 @@ const signPage : FC = () => {
             body: JSON.stringify({ name, email, password }),
         });
 
+        const data = await res.json();
+
         if (res.ok) {
             alert("User registered! You can now log in.");
-            window.location.href = "/login";
+            localStorage.setItem(
+            "user",
+            JSON.stringify({
+                id: data.user.id,
+                name: data.user.name,
+                email: data.user.email,
+                token: data.token, 
+            })
+        );
+        window.location.href = "/login";
         } else {
             const { error } = await res.json();
             alert(error);
@@ -40,6 +51,18 @@ const signPage : FC = () => {
 
     const handleLogin = () => {
         router.push('/login');
+    }
+
+    const handleGoogleLogin = async () => {
+        localStorage.setItem(
+        "user",
+        JSON.stringify({
+            provider: "google",
+            isAuthenticated: true,
+            loginTime: new Date().toISOString(),
+        })
+        );
+        await signIn("google", { callbackUrl: "/components/shop" });
     }
 
     return(
@@ -54,7 +77,7 @@ const signPage : FC = () => {
                     <button className="pt-3 pb-3 pr-5 pl-5 bg-blue-600 text-white rounded-sm" onClick={handleSubmit}>Sign In</button>
                 </form>
                 <p className="hover:underline hover:cursor-pointer md:text-xl" onClick={handleLogin}>Already a user ? Login here</p>
-                <button type="button" className="flex w-60 justify-center p-5 space-x-3 border border-gray-500 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-0" onClick={() => signIn("google", { callbackUrl: "/components/shop" })}>
+                <button type="button" className="flex w-60 justify-center p-5 space-x-3 border border-gray-500 pt-3 pb-3 pr-5 pl-5 rounded-sm mt-10 md:mt-0" onClick={handleGoogleLogin}>
                     <Image src={google} alt="google" className="w-5 h-5"/>
                     <p>Login with Google</p>
                 </button>
