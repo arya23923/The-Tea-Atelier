@@ -46,11 +46,11 @@ const Cart: FC = () => {
                     </div>
                     <div className="flex justify-between">
                       <div className="flex border border-black justify-evenly w-35 mt-5 p-3 ml-0 self-center">
-                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : 1}))}>+</div>
+                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({id: cart.id, quantity : 1}))}>+</div>
                           <div className="self-center">{cart.quantity}</div>
-                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : -1}))}>-</div>
+                          <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({id: cart.id, quantity : -1}))}>-</div>
                       </div>
-                      <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({tea : cart}))}/>
+                      <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({id : cart.id}))}/>
                     </div>
                   </div>
                 ))}
@@ -71,12 +71,12 @@ const Cart: FC = () => {
                   </div>
                   <p className="self-center justify-self-center">₹ {cart.price}</p>
                   <div className="flex border border-black justify-evenly w-35 mt-5 p-3 self-center">
-                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : 1}))}>+</div>
+                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({id: cart.id, quantity : 1}))}>+</div>
                         <div className="self-center">{cart.quantity}</div>
-                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({tea: cart, quantity : -1}))}>-</div>
+                        <div className="hover:cursor-pointer self-center" onClick={() => dispatch(updateQuantity({id: cart.id, quantity : -1}))}>-</div>
                     </div>
                   <p className="justify-self-center self-center">₹ {cart.price * cart.quantity}</p>
-                  <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({tea : cart}))}/>
+                  <Image src={dustbin} alt="dustbin" height={200} width={200} className="w-20 h-20 p-5 self-center mt-5 hover:cursor-pointer" onClick={() => dispatch(removeItem({id : cart.id}))}/>
                 </div>
               ))}
             </div>
