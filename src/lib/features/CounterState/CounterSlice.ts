@@ -51,16 +51,16 @@ export const CounterSlice = createSlice({
       else state.cart.push({id, name, price, image, description, quantity : 1})
       state.value++;
     },
-    removeItem: (state, action: PayloadAction<{tea : Tea}>) => {
-      const {id, name, price, image, description} = action.payload.tea;
+    removeItem: (state, action: PayloadAction<{id : number}>) => {
+      const id = action.payload.id;
       const existing = state.cart.find(tea => tea.id === id);
       if(existing){
         state.cart = state.cart.filter(tea => tea.id !== id);
         state.value -= existing.quantity;
       }
     },
-    updateQuantity: (state, action : PayloadAction<{tea: Tea, quantity : number}>) => {
-      const {id, name, price, image, description} = action.payload.tea;
+    updateQuantity: (state, action : PayloadAction<{id: number, quantity : number}>) => {
+      const id = action.payload.id;
       const existing = state.cart.find((tea) => tea.id == id);
       
       if(!existing) return
