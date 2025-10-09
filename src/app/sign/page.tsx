@@ -14,7 +14,7 @@ const montserrat = Montserrat({
   weight: ["400", "700"], 
 });
 
-const signPage : FC = () => {
+const SignPage : FC = () => {
     const router = useRouter();
     const[name, setName] = useState<string>('');
     const[email, setEmail] = useState<string>('');
@@ -86,4 +86,4 @@ const signPage : FC = () => {
     )
 }
 
-export default signPage;
+export default SignPage;
