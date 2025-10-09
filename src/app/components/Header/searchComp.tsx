@@ -27,7 +27,6 @@ interface SearchButton {
 
 const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
     const [tea, setTea] = useState<Tea[]>([]);
-    const [load, setLoad] = useState<boolean>(true);
     const [sorted, setSorted] = useState<Tea[]>([]);
     const [query, setQuery] = useState<string>("");
     const [modal, setModal] = useState<boolean>(false);
@@ -41,14 +40,11 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
                 setTea(data);
             } catch(error) {
                 console.error("could not fetch teas : ",error);
-            } finally {
-                setLoad(false);
-            }
+            } 
         }
         fetchMatch();
     }, [])
 
-    // if(load) return(<>Loading....</>)
 
     const match = (name_match : string) => {
         if (!tea) return;
