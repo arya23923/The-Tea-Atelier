@@ -2,7 +2,6 @@
 
 import { FC } from "react"
 import { useRouter } from "next/navigation";
-
 import { Inria_Serif } from 'next/font/google'
 
 const inriaSerif = Inria_Serif({
@@ -13,9 +12,8 @@ const inriaSerif = Inria_Serif({
 
 const Home : FC = () => {
     const router = useRouter();
-
     const handleClick = () => {
-        router.push("/sign")
+        router.push("/components/shop")
     }
     return(
         <div className={`bg-[url(/images/home-page.jpg)] bg-cover md:bg-cover w-screen h-screen ${inriaSerif.className}`}>
