@@ -4,7 +4,7 @@ The Tea Atelier is an e commerce website for tea enthusiasts. This is a Next.js 
 
 Live link to project : 
 
-Here are a few screenshots from the project :
+Here are a few screenshots from the project : [Link Text](the-tea-atelier.vercel.app)
 
 ![Alt text](screenshots/homepage.png)
 
