@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 });
 
 
-const loginPage : FC = () => {
+const LoginPage : FC = () => {
     const router = useRouter();
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -80,4 +80,4 @@ const loginPage : FC = () => {
     )
 }
 
-export default loginPage
+export default LoginPage
