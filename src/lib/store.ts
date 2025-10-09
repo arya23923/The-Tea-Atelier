@@ -1,8 +1,9 @@
 "use client";
 
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer, { CounterState } from './features/CounterState/CounterSlice';
+import counterReducer, { CounterState } from "./features/CounterState/CounterSlice";
 
+// Load cart state from localStorage
 export const loadCartFromLocalStorage = (): CounterState => {
   try {
     const stored = localStorage.getItem("cartState");
@@ -15,6 +16,7 @@ export const loadCartFromLocalStorage = (): CounterState => {
   return { value: 0, cart: [] };
 };
 
+// Save cart state to localStorage
 export const saveCartToLocalStorage = (state: CounterState) => {
   try {
     localStorage.setItem("cartState", JSON.stringify(state));
@@ -23,6 +25,7 @@ export const saveCartToLocalStorage = (state: CounterState) => {
   }
 };
 
+// Factory function that creates a new store instance
 export const makeStore = () => {
   const preloadedState =
     typeof window !== "undefined"
@@ -45,9 +48,8 @@ export const makeStore = () => {
   return store;
 };
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<ReturnType<typeof makeStore>["getState"]>;
-export type AppDispatch = ReturnType<ReturnType<typeof makeStore>["dispatch"]>;
+export const store = makeStore();
 
-
-
+export type AppStore = typeof store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
