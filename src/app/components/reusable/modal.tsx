@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import cross from '@/../public/images/cross.png'
 import Image from "next/image";
 
@@ -37,7 +37,6 @@ interface modal{
 const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
 
     const dispatch = useDispatch();
-    const countState = useSelector((state: RootState) => state.counter.value);
     
     return(
         <div className={`fixed inset-0 -ml-5 flex items-center justify-center max-h-screen backdrop-blur-sm bg-gray-20 md:z-50 ${isOpen ? "block" : "hidden"}`}>
