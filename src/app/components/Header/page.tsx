@@ -96,7 +96,7 @@ const Header : FC = () => {
                 <Link href='/components/Homepage'><Image className={`w-25 ml-8 shrink-0`} src={header_image} alt='header_image' /></Link>
                 <Link href='/components/cart' className='inline'><Image src={cart} alt='cart image' className='w-15 h-8 self-center pr-3 ml-5 pl-3 mt-10' /></Link>
                 <p className='mt-12 pr-3'>({hydrated ? countState : 0})</p>
-                <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-10 self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
+                <a onClick={() => setSearchOpen(true)}><Image src={search_icon} className=' inline w-13 h-auto self-center p-2 pr-3 pl-3 mt-10' alt='search'/></a>
                 <SearchComp isOpen={searchOpen} isClose={() => setSearchOpen(false)}/>
             </div>
             <div className={`hidden md:flex justify-around items-center p-3 text-white backdrop-blur-xl fixed w-screen z-40 group hover:bg-white ${scroll ? "bg-white" : "backdrop-blur-xl"}`} onMouseOver={() => {setLogo("/images/logo-site.png"); setSearch("/images/search.png")}} onMouseOut={() => {
