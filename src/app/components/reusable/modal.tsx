@@ -54,7 +54,7 @@ const TeaModal:FC<modal> = ({isOpen, isClose, teainfo}) => {
             <div className="hidden md:block bg-white w-auto h-auto mt-10">
                 {teainfo && (
                     <div className="flex flex-row">
-                        <Image src={teainfo.image} alt="tea image" width={700} height={700}/>
+                        <Image src={teainfo.image} alt="tea image" width={700} height={700} className="w-auto h-170"/>
                         <div className={`flex flex-col w-full p-3 pl-6 pb-10 ${montserrat.className}`}>
                             <Image src={cross} alt="cross" className="w-15 p-3 self-end" onClick={isClose}/>
                             <p className={`${cormorant.className} text-7xl font-light `}>{teainfo.name}</p>
