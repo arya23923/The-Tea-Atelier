@@ -63,8 +63,8 @@ const SearchComp:FC<SearchButton> = ({isOpen, isClose}) => {
 
     return(
         <div className= {`z-10 fixed inset-0 transition-all duration-500 w-full h-screen md:text-black bg-gray-100 overflow-scroll ${isOpen ? "translate-y-0" : "-translate-y-full"} `}>
-            <Image src={logo} alt="logo" className="justify-self-center-safe w-25 h-auto self-center-safe mt-5 md:w-50"/>
-            <Image src={cross} alt="cross" className="justify-self-end w-8 h-8 mr-10" onClick={isClose}/>
+            <Image src={logo} alt="logo" className="w-25 h-auto mt-5 md:w-50 mx-auto"/>
+            <Image src={cross} alt="cross" className="justify-self-end w-8 h-8 ml-10" onClick={isClose}/>
             <div className="flex justify-between p-5 mr-5 md:justify-center md:space-x-10">
                 <input type="text" placeholder="What are you looking for" className="border border-gray-700 p-5 w-60 md:w-250" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => {if(e.key == "Enter") {setQuery(query); match(query)}}}/>
                 <button className="bg-amber-900 text-white w-25 text-sm md:w-30 hover:bg-amber-700" onClick={() => match(query)}>SEARCH</button>
